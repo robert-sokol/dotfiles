@@ -146,3 +146,11 @@ export EDITOR=vim
 export VISUAL=vim
 
 ################################################################################
+# Aliases
+################################################################################
+
+alias ls='ls --color'
+alias ll='ls -lah --color'
+
+# dotconf used to manage dotfiles in the repo.
+alias dotconf="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
