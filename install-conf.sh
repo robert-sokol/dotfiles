@@ -7,11 +7,12 @@ dotconf() {
 echo ".cfg" > "$HOME"/.gitignore
 
 mkdir -p "$HOME"/.config-backup
+mkdir -p "$HOME"/.cfg
 
-cd "$HOME"/.cfg/
 for _file in $(git ls-tree -r main --name-only); do
     [[ -f "$HOME"/"$_file" ]] && mv "$HOME"/"$_file" "$HOME"/.config-backup/
-    mv "$_file" "$HOME"/
+    cp -f "$_file" "$HOME"/
 done
+rsync -a .git/ "$HOME"/.cfg/
 
 dotconf config --local status.showUntrackedFiles no
