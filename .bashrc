@@ -29,7 +29,7 @@ bind "set show-all-if-ambiguous on"
 # User Specific $PATH
 ################################################################################
 
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+if ! [[ "$PATH" =~ "$HOME"/.local/bin:"$HOME"/bin: ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
     export PATH
 fi
@@ -152,5 +152,12 @@ export VISUAL=vim
 alias ls='ls --color'
 alias ll='ls -lah --color'
 
-# dotconf used to manage dotfiles in the repo.
-alias dotconf="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+
+################################################################################
+# Dotconf settings
+################################################################################
+
+# Used for managing the config repo
+dotconf() {
+    git --git-dir="$HOME"/.cfg/ --work-tree="$HOME"
+}
