@@ -53,3 +53,17 @@ shopt -u mailwarn                   # Disabled mail file checking.
 unset MAILCHECK                     # Disable email notifications.
 
 ################################################################################
+# History options
+################################################################################
+
+shopt -s histappend
+export HISTFILESIZE=100000
+export HISTSIZE=10000
+PROMPT_COMMAND='history -a'
+
+#Ignore duplicate lines, do not log commands that start with space.
+export HISTCONTROL=erasedups:ignoredups:ignorespace
+
+stty -ixon # Enable reverse history search.
+
+################################################################################
