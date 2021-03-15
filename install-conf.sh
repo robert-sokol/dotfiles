@@ -6,10 +6,12 @@ dotconf() {
 
 echo ".cfg" > "$HOME"/.gitignore
 
-mkdir -p "$HOME"/.config-backup && \
-dotconf checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' | \
-xargs -I{} mv {} .config-backup/{}
+mkdir -p "$HOME"/.config-backup
+
+cd "$HOME"/.cfg/
+for _file in $(git ls-tree -r main --name-only); do
+    [[ -f "$HOME"/"$_file" ]] && mv "$HOME"/"$_file" "$HOME"/.config-backup/
+    mv "$_file" "$HOME"/
+done
 
 dotconf config --local status.showUntrackedFiles no
-
-. "$HOME"/.bash_profile

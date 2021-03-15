@@ -159,5 +159,5 @@ alias ll='ls -lah --color'
 
 # Used for managing the config repo
 dotconf() {
-    git --git-dir="$HOME"/.cfg/ --work-tree="$HOME"
+    git --git-dir="$HOME"/.cfg/ --work-tree="$HOME" "$@"
 }
