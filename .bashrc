@@ -121,3 +121,15 @@ On_White='\e[47m'       # White
 NC="\e[m"               # Color Reset
 
 ################################################################################
+# User testing for $PS1 prompt
+################################################################################
+
+if [[ $USER == root ]]; then #user is root
+    SU="$BRed"
+elif [[ "$USER" != "$(logname)" ]];then #user used sudo
+    SU="$Red"
+else
+    SU="$BYellow" #regular user
+fi
+
+################################################################################
