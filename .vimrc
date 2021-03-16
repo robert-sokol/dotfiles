@@ -41,3 +41,36 @@ autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,
 
 "Trim trailing whitespaces when saving."
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e``
+
+"###############################################################################
+"# vim-plug configuration
+"###############################################################################
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'https://github.com/preservim/nerdtree.git'
+Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
+call plug#end()
+
+
+"###############################################################################
+"# NerdTree configuration
+"###############################################################################
+
+"Start NerdTree automatically and shift focus to opened file"
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+"Automatically close Vim when NerdTree is the last window"
+
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
+"Prevent other buffers from overwriting NerdTree window"
+
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+"Open NerdTree on each new tab"
+
+autocmd BufWinEnter * silent NERDTreeMirror
