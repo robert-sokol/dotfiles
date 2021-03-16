@@ -9,4 +9,4 @@ Clone the repository to .cfg/ directory in your home, with:
 `git clone https://github.com/robert-sokol/dotfiles.git "$HOME"/.cfg`,
 and run `install-conf.sh` . The script will create backups of the current configs in "$HOME/.config-backup/", and move all dotfiles to the proper locations in your "$HOME".
 
-
+Vim will show syntax errors after first loading, due to missing plugin installs. To install plugins, run `:PlugInstall` in vim and reload.
