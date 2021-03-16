@@ -50,6 +50,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'https://github.com/preservim/nerdtree.git'
 Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
+Plug 'https://github.com/vim-syntastic/syntastic.git'
+
 call plug#end()
 
 
@@ -74,3 +76,16 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 "Open NerdTree on each new tab"
 
 autocmd BufWinEnter * silent NERDTreeMirror
+
+"###############################################################################
+"# Syntastic configuration
+"###############################################################################
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
